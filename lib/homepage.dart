@@ -39,6 +39,21 @@ class _HomePageState extends State<HomePage> {
               child: Divider(thickness: 2,),
             ),
 
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 12),
+                  child : RichText(text: TextSpan(
+                    text : 'Select State',
+                    style: GoogleFonts.titilliumWeb(textStyle: TextStyle(color: Colors.black54) ,fontSize: 30)
+                )
+                ),
+                ),
+                Image.asset("Assets/Images/location.png",height: 50 ,width: 100,),
+              ],
+            ),
+
             state_panel(),
           ],
         ),
