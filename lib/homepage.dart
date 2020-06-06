@@ -20,43 +20,45 @@ class _HomePageState extends State<HomePage> {
               bottom: Radius.circular(20)
             )
           ),
+           title: Image.asset("Assets/Images/logo.png",height: 100,width: 130,),
            backgroundColor: Colors.white,
         ),
       ),
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: RichText(text: TextSpan(
-                  text : 'We Use Advance Machine Learning Algorithm To Precisely Predict Home Prices',
-                  style: GoogleFonts.aBeeZee(textStyle: TextStyle(color: Colors.black54) ,fontSize: 18)
-              )
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left : 12.0 ,right: 12 ,bottom: 2),
-              child: Divider(thickness: 2,),
-            ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 12),
-                  child : RichText(text: TextSpan(
-                    text : 'Select State',
-                    style: GoogleFonts.titilliumWeb(textStyle: TextStyle(color: Colors.black54) ,fontSize: 30)
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: RichText(text: TextSpan(
+                    text : 'We Use Advance Machine Learning Algorithm To Precisely Predict Home Prices',
+                    style: GoogleFonts.aBeeZee(textStyle: TextStyle(color: Colors.black54) ,fontSize: 18)
                 )
                 ),
-                ),
-                Image.asset("Assets/Images/location.png",height: 50 ,width: 100,),
-              ],
-            ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left : 12.0 ,right: 12 ,bottom: 2),
+                child: Divider(thickness: 2,),
+              ),
 
-            state_panel(),
-            state_panel(),
-          ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12),
+                    child : RichText(text: TextSpan(
+                      text : 'Select State',
+                      style: GoogleFonts.titilliumWeb(textStyle: TextStyle(color: Colors.black54) ,fontSize: 30)
+                  )
+                  ),
+                  ),
+                  Image.asset("Assets/Images/location.png",height: 45 ,width: 100,),
+                ],
+              ),
+              SizedBox(height: 10,),
+              state_panel(),
+            ],
+          ),
         ),
       ),
     );
