@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+    crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript">function getBathValue() {
+      var uiBathrooms = document.getElementsByName("uiBathrooms");
+      for(var i in uiBathrooms) {
+        if(uiBathrooms[i].checked) {
+            return parseInt(i)+1;
+        }
+      }
+      return -1; // Invalid Value
+    }
+    
+    function getBHKValue() {
+      var uiBHK = document.getElementsByName("uiBHK");
+      for(var i in uiBHK) {
+        if(uiBHK[i].checked) {
+            return parseInt(i)+1;
+        }
+      }
+      return -1; // Invalid Value
+    }
+    
+    function onClickedEstimatePrice() {
+      console.log("Estimate price button clicked");
+      var sqft = document.getElementById("uiSqft");
+      var bhk = getBHKValue();
+      var bathrooms = getBathValue();
+      var location = document.getElementById("uiLocations");
+      var estPrice = document.getElementById("uiEstimatedPrice");
+    
+      var url = "http://127.0.0.1:5000/predict_home_price"; //Use this if you are NOT using nginx which is first 7 tutorials
+      //var url = "/api/predict_home_price"; // Use this if  you are using nginx. i.e tutorial 8 and onwards
+    
+      $.post(url, {
+          total_sqft: parseFloat(sqft.value),
+          bhk: bhk,
+          bath: bathrooms,
+          location: location.value
+      },function(data, status) {
+          console.log(data.estimated_price);
+          estPrice.innerHTML = "<h2>" + data.estimated_price.toString() + " Lakh</h2>";
+          console.log(status);
+      });
+    }
+    
+    function onPageLoad() {
+      console.log( "document loaded" );
+       var url = "http://127.0.0.1:5000/get_location_names"; // Use this if you are NOT using nginx which is first 7 tutorials
+     // var url = "/api/get_location_names"; // Use this if  you are using nginx. i.e tutorial 8 and onwards
+      $.get(url,function(data, status) {
+          console.log("got response for get_location_names request");
+          if(data) {
+              var locations = data.locations;
+              var uiLocations = document.getElementById("uiLocations");
+              $('#uiLocations').empty();
+              for(var i in locations) {
+                  var opt = new Option(locations[i]);
+                  $('#uiLocations').append(opt);
+              }
+          }
+      });
+    }
+    
+    window.onload = onPageLoad;</script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+          <img src="logo.png" width="100" height="60" alt="" loading="lazy">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="jumbotron jumbotron-fluid text-white bg-primary">
+        <div class="container">
+          <h1 class="display-4">Predictor</h1>
+          <p class="lead">Here at Predictor we use Machine Learning Algorithms for precise calculation of home prices. Which is used & trusted by million of users</p>
+        </div>
+      </div>
+      <div class="row row-cols-1 row-cols-md-2">
+        <div class="col mb-4">
+          <a href="bangalore.html" class="card">
+            <img src="bangalore.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Banglore</h5>
+              <p class="card-text">Bengaluru (also called Bangalore) is the capital of India's southern Karnataka state. The center of India's high-tech industry, the city is also known for its parks and nightlife.</p>
+            </div>
+          </a>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <img src="delhi.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Delhi</h5>
+              <p class="card-text">Delhi, India’s capital territory, is a massive metropolitan area in the country’s north.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="text-center test-">More States Coming Soon!</h3>
+      <footer class="py-5 bg-dark">
+        <div class="container">
+          <p class="m-0 text-center text-white">Copyright &copy; Predictor 2020 
+            <br><a class="custom" href="">Privacy Policy</a> |
+             <a class="custom" href="">Terms and Conditions</a>
+            </p>
+          </div>
+        </footer>
+      </body>
+</html>
