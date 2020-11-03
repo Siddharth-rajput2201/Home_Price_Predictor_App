@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:dropdownfield/dropdownfield.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 
 class Formpage extends StatefulWidget {
 
@@ -18,12 +21,27 @@ class Formpage extends StatefulWidget {
 
 class _FormpageState extends State<Formpage> {
 
+  Map locationData;
+
+  fetchlocationData()async{
+    http.Response response = await http.get("http://192.168.0.102:5000/get_location_names");
+    setState(() {
+      locationData = json.decode(response.body);
+    });
+  }
+  @override
+  void initState() {
+    fetchlocationData();
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
    // double widthdevice = MediaQuery.of(context).size.width;
     double heightDevice = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Container(
+      body: locationData == null ? Center(child: CircularProgressIndicator(),) : Container(
         color: Colors.white,
         child: Column(
           children: <Widget>[
