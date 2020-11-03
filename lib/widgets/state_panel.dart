@@ -37,7 +37,7 @@ class Panel extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: GestureDetector(
         onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>Formpage()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>Formpage(Formimagepath : imagepath)));
         },
         child: Container(
           width: width/2,
