@@ -40,17 +40,14 @@ class _FormwidgetState extends State<Formwidget> {
     return locationDataBangalore == null ? Center(child: CircularProgressIndicator(),) :Container(
       child: Column(
         children: <Widget>[
-
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: SingleChildScrollView(
-              child: DropDownField(
-                controller: locationController,
-                hintText: "Select Location",
-                enabled: true,
-                itemsVisibleInDropdown: 5,
-                items: locationDataBangalore["locations"].cast<String>(),
-              ),
+            child: DropDownField(
+              controller: locationController,
+              hintText: "Select Location",
+              enabled: true,
+              itemsVisibleInDropdown: 5,
+              items: locationDataBangalore["locations"].cast<String>(),
             ),
           ),
         ],

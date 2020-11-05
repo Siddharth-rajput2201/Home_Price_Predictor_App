@@ -27,6 +27,7 @@ class _FormpageState extends State<Formpage> {
    // double widthdevice = MediaQuery.of(context).size.width;
     double heightDevice = MediaQuery.of(context).size.height;
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: Container(
         color: Colors.white,
         child: Column(
@@ -47,7 +48,7 @@ class _FormpageState extends State<Formpage> {
                 style: GoogleFonts.bellota(textStyle: TextStyle(color: Colors.black54) ,fontSize: 25 ,fontWeight: FontWeight.w800)
             )
             ),
-            Formwidget(state: widget.formStateName,),
+            SingleChildScrollView(child: Formwidget(state: widget.formStateName,)),
           ],
         ),
       ),
