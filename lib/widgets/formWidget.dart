@@ -39,6 +39,16 @@ class _FormwidgetState extends State<Formwidget> {
   }
 
   @override
+  void dispose() {
+    locationController.clear();
+    bathroomController.clear();
+    totalSqftController.clear();
+    bhkController.clear();
+    priceContainer = false;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return locationDataBangalore == null ? Center(child: CircularProgressIndicator(),) :Container(
       child: Form(
@@ -149,7 +159,6 @@ class _FormwidgetState extends State<Formwidget> {
                   circular = false;
                   priceContainer = true;
                 });
-
               },
             )
           ],
