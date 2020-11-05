@@ -1,10 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:dropdownfield/dropdownfield.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
+import 'package:homepricepredictor/widgets/formWidget.dart';
+
 
 class Formpage extends StatefulWidget {
 
@@ -21,19 +20,6 @@ class Formpage extends StatefulWidget {
 
 class _FormpageState extends State<Formpage> {
 
-  Map locationData;
-
-  fetchlocationData()async{
-    http.Response response = await http.get("http://192.168.0.102:5000/get_location_names");
-    setState(() {
-      locationData = json.decode(response.body);
-    });
-  }
-  @override
-  void initState() {
-    fetchlocationData();
-    super.initState();
-  }
 
 
   @override
@@ -41,7 +27,7 @@ class _FormpageState extends State<Formpage> {
    // double widthdevice = MediaQuery.of(context).size.width;
     double heightDevice = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: locationData == null ? Center(child: CircularProgressIndicator(),) : Container(
+      body: Container(
         color: Colors.white,
         child: Column(
           children: <Widget>[
@@ -61,7 +47,7 @@ class _FormpageState extends State<Formpage> {
                 style: GoogleFonts.bellota(textStyle: TextStyle(color: Colors.black54) ,fontSize: 25 ,fontWeight: FontWeight.w800)
             )
             ),
-            Formwidget(),
+            Formwidget(state: widget.formStateName,),
           ],
         ),
       ),
@@ -69,28 +55,4 @@ class _FormpageState extends State<Formpage> {
   }
 }
 
-class Formwidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          DropDownField(
-            controller: locationController,
-            hintText: "Select Location",
-            enabled: true,
-            items: locationBangalore,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-final locationController = TextEditingController();
-
-List<String> locationBangalore = [
-  "Delhi",
-  "Mumbai",
-];
 
