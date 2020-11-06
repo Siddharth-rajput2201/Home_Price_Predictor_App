@@ -1,16 +1,11 @@
 # homepricepredictor
 
-A new Flutter application.
+It is an Flutter application.In This Machine Learning Model has been used to predict the price's of house. It take 4 basic parameter 
+1-> LOCATION
+2-> NUMBER OF BATHROOM 
+3-> TOTAL SQUARE FEET
+4-> TOTAL BHK
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| Home Price Predition App     |
+|------------|
+| <img src="home price predition.gif" width="250"> |
