@@ -26,7 +26,7 @@ class _FormwidgetState extends State<Formwidget> {
   Map locationDataBangalore;
   fetchlocationData()async{
     location = widget.state;
-    http.Response locationData = await http.get("http://192.168.0.102:5000/get_location_names_$location");
+    http.Response locationData = await http.get("https://housepricepredictionapiv1.herokuapp.com//get_location_names_$location");
     setState(() {
       locationDataBangalore = jsonDecode(locationData.body);
     });
@@ -185,7 +185,7 @@ async {
       var dio = Dio();
       try{
         FormData formData = new FormData.fromMap(data);
-        var responsePrice = await dio.post("http://192.168.0.102:5000/predict_home_price_Bangalore" , data: formData);
+        var responsePrice = await dio.post("https://housepricepredictionapiv1.herokuapp.com/predict_home_price_Bangalore" , data: formData);
         print(responsePrice.data);
         price = responsePrice.data;
       }catch(error){

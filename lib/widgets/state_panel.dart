@@ -15,7 +15,7 @@ class state_panel extends StatelessWidget {
         physics: NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio: 1.6),
         children: <Widget>[
-           Panel(statename : 'Delhi', imagepath: "Assets/Images/delhi.jpg",),
+          // Panel(statename : 'Delhi', imagepath: "Assets/Images/delhi.jpg",),
            Panel(statename : 'Bangalore', imagepath: "Assets/Images/Bangalore.jpg",),
         ],
       ),
