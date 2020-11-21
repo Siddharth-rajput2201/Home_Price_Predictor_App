@@ -153,11 +153,18 @@ class _FormwidgetState extends State<Formwidget> {
               async{
                 setState(() {
                   circular = true;
+                  priceContainer = false;
                 });
                 await getPrice();
-                setState(() {
+                  setState(() {
                   circular = false;
-                  priceContainer = true;
+                  if(price['estimated_price'].toString().isNotEmpty) {
+                    priceContainer = true;
+                  }
+                  else
+                    {
+                      priceContainer = false;
+                    }
                 });
               },
             )
